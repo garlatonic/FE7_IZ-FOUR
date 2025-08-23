@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FE7 세번째레슨</title>
+  </head>
+  <body>
+    <script type="module">
+      import * as todo from "./script.js";
+      window.todo = todo;
+
+      const a = todo.addTodo("자바스크립트 공부");
+      const b = todo.addTodo("운동하기");
+      todo.printTodoList();
+
+      todo.toggleTodo(a.id);
+      todo.printTodoList();
+
+      todo.modifyTodo(b.id, "매일 아침 운동하기");
+      todo.printTodoList();
+
+      todo.deleteTodo(a.id);
+      todo.printTodoList();
+    </script>
+    <h1>TodoList 테스트 (DOM 없이)</h1>
+    <p>
+      개발자도구 콘솔을 열어 <code>todo</code> 객체의 메서드를 실행해보세요.
+    </p>
+  </body>
+</html>
