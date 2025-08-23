@@ -11,8 +11,9 @@
     </p>
 
     <script type="module">
-      import * as todo from "./script.js";
+      import { toDoProgram } from "./script.js";
       // 콘솔에서 빠르게 접근 가능하도록 window에 바인딩
+      const todo = new toDoProgram();
       window.todo = todo;
 
       // 아래는 모의 호출 예시 (주석 해제하고 새로고침하면 자동 실행됨)
