@@ -11,13 +11,18 @@ export class toDoProgram {
   }
 
   addTodo(text) {
-    console.log(`📝${text} 항목이 등록되었습니다.`);
-
-    this.toDoList.push({
-      id: this.#currentId++,
+    const id = this.#currentId++;
+    const toDo = {
+      id: id,
       text: text,
       isDone: false,
-    });
+    };
+
+    console.log(`📝${text} 항목이 등록되었습니다.`);
+
+    this.toDoList.push(toDo);
+
+    return toDo;
   }
 
   deleteTodo(id) {
@@ -37,7 +42,8 @@ export class toDoProgram {
       const index = this.#findIndex(id);
 
       console.log(
-        `수정되었습니다.\n` + `📝${this.toDoList[index].text} → 📝${text}`
+        `항목이 수정되었습니다.\n` +
+          `📝${this.toDoList[index].text} → 📝${text}`
       );
 
       this.toDoList[index].text = text;
@@ -65,17 +71,19 @@ export class toDoProgram {
       this.toDoList.length !== 0
         ? this.toDoList.map(
             (toDo) =>
-              `id: ${toDo.id}\n` +
-              `📝${toDo.text}\n` +
-              `완료 여부: ${toDo.isDone ? "⭕" : "❌"}`
+              `id: ${toDo.id} | 📝${toDo.text} | 완료 여부: ${
+                toDo.isDone ? "⭕" : "❌"
+              }\n`
           )
         : "등록된 todo가 없습니다.";
 
     if (typeof content === "string") console.log(content);
     else {
+      console.log("――――――――― 현재 Todo List ―――――――――");
       for (let i = 0; i < content.length; i++) {
         console.log(content[i]);
       }
+      console.log("――――――――――――――――――――――――――");
     }
   }
 }
