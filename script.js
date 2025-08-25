@@ -20,7 +20,6 @@ function deleteTodo(id) {
     todos[id] = todos[id + 1];
   }
   todos[todos.length - 1] = null;
-  countId--;
 }
 
 // 할일 수정	modifyTodo(id, text)	등록된 할일을 수정
@@ -58,3 +57,11 @@ printTodoList();
 deleteTodo(a.id);
 
 printTodoList();
+
+addTodo("git 공부하기");
+
+printTodoList(); //id 중복됨
+
+addTodo("병원가기");
+
+printTodoList(); //id 중복됨
