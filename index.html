@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Headless Todo Test</title>
+  </head>
+  <body>
+    <h1>TodoList 테스트 (DOM 없이)</h1>
+    <p>
+      개발자도구 콘솔을 열어 <code>todo</code> 객체의 메서드를 실행해보세요.
+    </p>
+    <script type="module">
+      import * as todo from "./index.js";
+      // 콘솔에서 빠르게 접근 가능하도록 window에 바인딩
+      window.todo = todo;
+    </script>
+  </body>
+</html>
