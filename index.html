@@ -7,7 +7,9 @@
   </head>
   <body>
     <script type="module">
-      import * as todo from "./script.js";
+      import { TodoProgram } from "./script.js";
+      const todo = new TodoProgram();
+
       window.todo = todo;
 
       const a = todo.addTodo("자바스크립트 공부");
