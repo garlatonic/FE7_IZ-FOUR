@@ -35,6 +35,7 @@ export class TodoProgram {
 
     this.#list = this.#list.filter((toDo) => {
       if (toDo.id === id) console.log(`📝${toDo.text} 항목이 삭제되었습니다.`);
+      return toDo.id !== id;
     });
   }
 
