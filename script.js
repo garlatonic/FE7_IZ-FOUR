@@ -2,8 +2,8 @@ export class TodoProgram {
   #list = [];
   #currentId = 0;
 
-  #isValid(id) {
-    return this.#list.map((toDo) => toDo.id).includes(id);
+  #find(id) {
+    return this.#list.find((v) => v.id === id || null);
   }
   #now() {
     const now = new Date();
@@ -18,7 +18,7 @@ export class TodoProgram {
 
   addTodo(text) {
     const item = {
-      id: this.#currentId++,
+      id: String(this.#currentId++),
       text: text,
       isDone: false,
       date: this.#now(),
@@ -27,11 +27,11 @@ export class TodoProgram {
 
     console.log(`📝${text} 항목이 등록되었습니다.`);
 
-    return this.#list;
+    return item;
   }
 
   deleteTodo(id) {
-    if (!this.#isValid(id)) throw new Error("유효하지 않은 id입니다.");
+    if (!this.#find(id)) throw new Error("유효하지 않은 id입니다.");
 
     this.#list = this.#list.filter((toDo) => {
       if (toDo.id === id) console.log(`📝${toDo.text} 항목이 삭제되었습니다.`);
@@ -39,7 +39,7 @@ export class TodoProgram {
   }
 
   modifyTodo(id, text) {
-    if (!this.#isValid(id)) throw new Error("유효하지 않은 id입니다.");
+    if (!this.#find(id)) throw new Error("유효하지 않은 id입니다.");
 
     console.log(
       `항목이 수정되었습니다.\n` + `📝${this.#list[id].text} → 📝${text}`
@@ -49,7 +49,7 @@ export class TodoProgram {
   }
 
   toggleTodo(id) {
-    if (!this.#isValid(id)) throw new Error("유효하지 않은 id입니다.");
+    if (!this.#find(id)) throw new Error("유효하지 않은 id입니다.");
 
     const currentState = this.#list[id].isDone;
     const toDoState = (bool) => (bool ? "⭕" : "❌");
@@ -77,3 +77,4 @@ export class TodoProgram {
     });
   }
 }
+
