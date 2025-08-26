@@ -72,9 +72,8 @@ export class TodoProgram {
       console.log(
         `id: ${item.id} | 📝${item.text} | 완료 여부: ${
           item.isDone ? "⭕" : "❌"
-        }\n`
+        } | 저장 시간: ${item.date}\n`
       );
     });
   }
 }
-
