@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script type="module" src="./src/js/index.js"></script>
+  <script type="module" src="./src/js/components/aside.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
             <i data-lucide="square-pen"></i>
           </div>
         </div>
-        <div class="aside-utils hidden">
+        <div class="aside-utils">
           <a href="../index.html">홈</a>
           <a href="../index.html">검색</a>
         </div>
@@ -129,9 +130,7 @@
         <div class="inner flex justify-between items-center p-4">
           <div class="breadcrumb">
             <ol class="flex gap-3">
-              <li><a href="">루트경로루트경로루트경로루트경로루트경로루트경로루트경로루트경로</a></li>
-              <li><a href="">루트경로</a></li>
-              <li><a href="">루트경로</a></li>
+              <li><a href="">홈</a></li>
             </ol>
           </div>
           <div class="util">
@@ -142,15 +141,7 @@
       <!-- 문서 본문 -->
       <main id="contents" class="document flex justify-center " aria-label="본문">
         <div class="inner flex flex-col gap-4 w-2/4">
-          <div class="title">
-            <h1 class="text-5xl font-bold">
-              <input type="text" placeholder="새 페이지" aria-label="해당 페이지의 제목을 편집하려면 입력하세요." class="w-full outline-0" />
-            </h1>
-          </div>
-          <div class="content flex-1">
-            <textarea rows="1" placeholder="내용을 입력하세요." aria-label="해당 게시물의 내용을 편집하려면 입력하세요."
-              class="min-w-full min-h-full outline-0 resize-none"></textarea>
-          </div>
+          <div class="">이곳은 홈입니다</div>
         </div>
       </main>
     </div>

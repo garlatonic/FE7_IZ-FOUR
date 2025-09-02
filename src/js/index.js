@@ -10,7 +10,7 @@ lucide.createIcons();
 
 async function rootDouments() {
   const documents = await getAllDocuments();
-  console.log(documents);
+  
 }
 
 rootDouments(); // 문서 불러오기
