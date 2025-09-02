@@ -1,0 +1,12 @@
+# 의존성
+/node_modules
+
+# 운영체제 불필요 파일
+.DS_Store
+Thumbs.db
+
+# 에디터/IDE 설정
+.vscode/
+
+# 패키징
+package-lock.json

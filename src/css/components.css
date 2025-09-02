@@ -1,0 +1,120 @@
+/* =========== aside (화면 좌측, 사이드바) =========== */
+#aside.aside {
+  width: 250px;
+  background: var(--aside-bg);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--aside-fg);
+}
+.aside .inner {
+  padding: 8px;
+}
+/* 상단 타이틀 */
+.aside .aside-head {
+  color: var(--title-fg);
+}
+.aside .aside-head [role="button"] {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  transition: background 20ms ease;
+}
+.aside .aside-head [role="button"] svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--title-fg);
+}
+.aside .aside-head [role="button"]:hover {
+  background: var(--hover-bg);
+}
+/* 페이지 목록 */
+.aside .page-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  border-radius: var(--radius-sm);
+  color: var(--aside-fg);
+  transition: background 20ms ease;
+}
+.aside .page-item .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+}
+.aside .page-item .icon svg {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  stroke: var(--stroke-df);
+}
+.aside .page-item .title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.aside .page-item .util {
+  opacity: 0;
+}
+.aside .page-item .util [role="button"] {
+  width: 21px;
+  height: 21px;
+}
+.aside .page-item .util [role="button"] svg {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  stroke: var(--stroke-ic);
+}
+.aside .page-item:hover {
+  background: var(--hover-bg);
+}
+.aside .page-item:hover .util {
+  opacity: 1;
+}
+/* 최상단 페이지 목록 */
+.aside .page-item.heading {
+  font-size: var(--text-xsm);
+  color: var(--stroke-df);
+}
+
+/* =========== container (화면 우측, 문서) =========== */
+/* 브래드크럼 */
+.header .breadcrumb {
+  font-size: var(--text-sm);
+  color: var(--title-fg);
+}
+.header .breadcrumb ol li {
+  display: flex;
+  gap: 12px;
+}
+.header .breadcrumb ol li a {
+  overflow: hidden;
+  max-width: 160px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.header .breadcrumb ol li ~ li::before {
+  content: "/";
+  font-weight: 600;
+  color: #e2e2df;
+}
+/* 즐겨찾기 등등 아이콘 */
+.header .util [role="button"] {
+  width: 30px;
+  height: 30px;
+}
+.header .util [role="button"] svg {
+  width: 24px;
+  height: 24px;
+}
+/* 본문 */
+.document {
+  flex: 1;
+}
+.document .title input:focus::placeholder,
+.document .content textarea:focus::placeholder {
+  color: transparent;
+}

@@ -1,0 +1,64 @@
+/* =========== Design tokens =========== */
+:root {
+  /* background, text color */
+  --aside-bg: #f9f8f7;
+  --aside-fg: #5f5e5b;
+  --title-fg: #32302c;
+  --stroke-ic: #878684;
+  --stroke-df: #91918e;
+  --tips-fg: #a8a49c;
+
+  /* radius */
+  --radius-sm: 6px;
+
+  /* event */
+  --active-bg: rgba(0, 0, 0, 0.08);
+  --hover-bg: rgba(0, 0, 0, 0.04);
+
+  /* font size */
+  --text-sm: 14px;
+  --text-xsm: 12px;
+
+  /* icon size */
+  --icon-md: 1.25rem;
+  --icon-sm: 1rem;
+}
+
+/* =========== Base =========== */
+body {
+  min-height: 100vh;
+  font-family:
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI Variable Display",
+    "Segoe UI",
+    Helvetica,
+    "Apple Color Emoji",
+    Arial,
+    sans-serif,
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+#wrap {
+  min-height: inherit;
+}
+
+.hoverable {
+  border-radius: var(--radius-sm);
+  transition: background 20ms ease-in;
+}
+.hoverable:hover {
+  background: var(--hover-bg);
+}
+
+[role="button"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  transition: background 20ms ease;
+}
+[role="button"]:hover {
+  background: var(--hover-bg);
+}
