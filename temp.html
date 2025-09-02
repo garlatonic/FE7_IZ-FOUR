@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1차 프로젝트 7조 노션 클로닝 프로젝트</title>
+  <link rel="stylesheet" href="./src/css/root.css" />
+  <link rel="stylesheet" href="./src/css/components.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script type="module" src="./src/js/index.js"></script>
+</head>
+
+<body>
+  <div id="wrap" class="flex">
+    <aside id="aside" class="aside" aria-label="사이드바">
+      <div class="inner flex flex-col gap-4">
+        <div class="aside-head hoverable flex justify-between items-center ps-2 pe-1 py-1">
+          <div class="team flex items-center gap-2 p-1">
+            <div class="icon size-6">
+              <img src="./assets/icons/logo_notion.svg" alt="노션 로고" class="block rounded" />
+            </div>
+            <div class="title font-bold text-sm">
+              <h2>IZ*FOUR</h2>
+            </div>
+          </div>
+          <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기" class="flex justify-center items-center">
+            <i data-lucide="square-pen"></i>
+          </div>
+        </div>
+        <div class="aside-utils hidden">
+          <a href="../index.html">홈</a>
+          <a href="../index.html">검색</a>
+        </div>
+        <nav class="aside-menu">
+          <div class="sidebar">
+            <div class="heading page-item pl-2">
+              <div class="title flex-1">개인 페이지</div>
+              <div class="util">
+                <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+                  <i data-lucide="plus"></i>
+                </div>
+              </div>
+            </div>
+            <div class="body">
+              <ul class="list">
+                <li>
+                  <a href="#none" class="page-item pl-2">
+                    <!-- 빈 페이지는 data-lucide file -->
+                    <div class="icon"><i data-lucide="file"></i></div>
+                    <div class="title flex-1">새 페이지</div>
+                    <div class="util">
+                      <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+                        <i data-lucide="plus"></i>
+                      </div>
+                    </div>
+                  </a>
+                  <ul class="">
+                    <li>
+                      <a href="#none" class="page-item pl-4">
+                        <div class="icon"><i data-lucide="file-text"></i></div>
+                        <div class="title flex-1">새 페이지</div>
+                        <div class="util">
+                          <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+                            <i data-lucide="plus"></i>
+                          </div>
+                        </div>
+                      </a>
+                      <ul>
+                        <!-- pl-{뎁스 단계만큼 자동으로 계산해서 넣어야할 듯 해요} -->
+                        <li>
+                          <a href="#none" class="page-item pl-6">
+                            <div class="icon"><i data-lucide="file-text"></i></div>
+                            <div class="title flex-1">새 페이지</div>
+                            <div class="util">
+                              <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+                                <i data-lucide="plus"></i>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#none" class="page-item pl-6">
+                            <div class="icon"><i data-lucide="file-text"></i></div>
+                            <div class="title flex-1">새 페이지</div>
+                            <div class="util">
+                              <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+                                <i data-lucide="plus"></i>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#none" class="page-item pl-2">
+                    <!-- 빈 페이지는 data-lucide file -->
+                    <div class="icon"><i data-lucide="file"></i></div>
+                    <div class="title flex-1">새 페이지</div>
+                    <div class="util">
+                      <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+                        <i data-lucide="plus"></i>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="hidden" role="separator" aria-label="사이드바 영역을 닫거나, 크기 변경을 할 수 있습니다." data-tooltip="닫기-클릭"
+            data-reference="#separator-tooltip">
+            <div id="separator-tooltip" role="tooltip" class="">
+              <ul>
+                <li><strong>닫기</strong>클릭</li>
+                <li><strong>크기 조정</strong>드래그</li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </aside>
+    <!-- 문서 구역 -->
+    <div id="container" class="flex flex-col flex-1 gap-20">
+      <!-- 문서 상단 타이틀 -->
+      <header id="header" class="header" aria-label="문서 상단">
+        <div class="inner flex justify-between items-center p-4">
+          <div class="breadcrumb">
+            <ol class="flex gap-3">
+              <li><a href="">루트경로루트경로루트경로루트경로루트경로루트경로루트경로루트경로</a></li>
+              <li><a href="">루트경로</a></li>
+              <li><a href="">루트경로</a></li>
+            </ol>
+          </div>
+          <div class="util">
+            <div role="button" aria-label="즐겨찾기에 추가" class="tooltip"><i data-lucide="star"></i></div>
+          </div>
+        </div>
+      </header>
+      <!-- 문서 본문 -->
+      <main id="contents" class="document flex justify-center " aria-label="본문">
+        <div class="inner flex flex-col gap-4 w-2/4">
+          <div class="title">
+            <h1 class="text-5xl font-bold">
+              <input type="text" placeholder="새 페이지" aria-label="해당 페이지의 제목을 편집하려면 입력하세요." class="w-full outline-0" />
+            </h1>
+          </div>
+          <div class="content flex-1">
+            <textarea rows="1" placeholder="내용을 입력하세요." aria-label="해당 게시물의 내용을 편집하려면 입력하세요."
+              class="min-w-full min-h-full outline-0 resize-none"></textarea>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>
