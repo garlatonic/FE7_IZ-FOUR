@@ -4,7 +4,7 @@ import {
   postDocument,
   editDocument,
   deleteDocument,
-} from "./modules/document.js";
+} from "./modules/api.js";
 
 lucide.createIcons();
 
