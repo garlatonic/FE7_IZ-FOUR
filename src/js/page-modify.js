@@ -1,15 +1,3 @@
-lucide.createIcons();
-document.addEventListener("DOMContentLoaded", () => {
-  // tooltip.init();
-
-  const textarea = document.querySelector("textarea");
-
-  textarea.addEventListener("input", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
-  });
-});
-
 // 페이지 수정된 내용 저장하는 함수
 async function modifyContent(id, title, content) {
   const userName = "FE7_team7";
