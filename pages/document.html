@@ -1,0 +1,38 @@
+<header id="header" class="header" aria-label="문서 상단">
+  <div class="inner flex justify-between items-center p-4">
+    <div class="breadcrumb">
+      <ol class="flex gap-3">
+        <li>
+          <a href="">
+            루트경로루트경로루트경로루트경로루트경로루트경로루트경로루트경로
+          </a>
+        </li>
+        <li>
+          <a href="">루트경로</a>
+        </li>
+        <li>
+          <a href="">루트경로</a>
+        </li>
+      </ol>
+    </div>
+    <div class="util">
+      <div role="button" aria-label="즐겨찾기에 추가" class="tooltip">
+        <i data-lucide="star"></i>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="contents" class="document flex justify-center hidden" aria-label="본문">
+  <div class="inner flex flex-col gap-4 w-2/4">
+    <div class="title">
+      <h1 class="text-5xl font-bold">
+        <input type="text" data-doc-title placeholder="새 페이지" aria-label="해당 페이지의 제목을 편집하려면 입력하세요."
+          class="w-full outline-0" />
+      </h1>
+    </div>
+    <div class="content flex-1">
+      <textarea data-doc-content rows="1" placeholder="내용을 입력하세요." aria-label="해당 게시물의 내용을 편집하려면 입력하세요."
+        class="min-w-full min-h-full outline-0 resize-none"></textarea>
+    </div>
+  </div>
+</main>
