@@ -18,7 +18,6 @@ const aside = {
     this.$rootList.append(this.buildItems(data));
   },
   buildItems(nodes, depth = 0) {
-    console.log(nodes);
     const ulEl = document.createElement("ul");
 
     for (const node of nodes) {
