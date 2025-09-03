@@ -35,7 +35,7 @@ export async function viewDocument(id) {
 }
 
 export async function postDocument(_, body) {
-  return request("POST", undefined, body);
+  return request("POST", "", body);
 }
 
 export async function editDocument(id, body) {
