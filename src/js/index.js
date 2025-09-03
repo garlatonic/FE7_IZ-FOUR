@@ -80,7 +80,7 @@ const home = {
     for (let i = 0; i < 5; i++) {
       const cardDiv = document.createElement("div");
       cardDiv.className =
-        "card bg-white flex flex-col rounded-2xl shadow-md mr-5 h-80 w-1/5 overflow-hidden cursor-pointer";
+        "card bg-white flex flex-col rounded-2xl shadow-md mr-5 min-w-52 h-80 w-1/5 overflow-hidden cursor-pointer";
 
       const image = document.createElement("div");
       image.className = "card-image bg-gray-100 mb-4 h-80";
