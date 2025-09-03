@@ -64,7 +64,6 @@ const aside = {
 
 aside.init().then(() => {
   // history API 사용 SPA
-
   //처음 로드 됐을 때 state 추가
   history.replaceState(
     { isHome: true, title: "홈", content: "콘텐츠" },
@@ -75,17 +74,54 @@ aside.init().then(() => {
   // 페이지 간 동작
   const pageItems = document.querySelectorAll("li");
 
-  function navigator(state) {
+  function navigateFn(state) {
     const pageArea = document.querySelector("#contents");
     const home = document.querySelector(".home");
+    const breadcrumb = document.querySelector(".breadcrumb ol");
+
+    // 브래드크럼 li 생성
+    const createBread = (text) => {
+      const breadLi = document.createElement("li");
+      const breadA = document.createElement("a");
+      breadA.textContent = text;
+      breadLi.appendChild(breadA);
+
+      return breadLi;
+    };
+
     if (state.isHome) {
       // 홈 화면
       home.classList.remove("hidden");
       pageArea.classList.add("hidden");
-      console.log("홈");
+
     } else {
       pageArea.classList.remove("hidden");
       home.classList.add("hidden");
+
+      // 브래드크럼
+      const children = state.documents;
+      const depth = children.length;
+
+      if (depth === 0) {
+        // 자식페이지 또는 자식이 없는 부모페이지
+        const currentPage = document.querySelector(`[data-id="${state.id}"]`);
+        const parentPage = currentPage.parentElement.closest("li");
+
+        if (parentPage === null) {
+          // 자식 없는 부모 페이지
+          breadcrumb.replaceChildren(createBread(state.title));
+        } else {
+          const parent = parentPage.querySelector(".title").textContent;
+          breadcrumb.replaceChildren(
+            createBread("홈"),
+            createBread(parent),
+            createBread(state.title)
+          );
+        }
+      } else {
+        // 부모 페이지
+        breadcrumb.replaceChildren(createBread("홈"), createBread(state.title));
+      }
 
       // 페이지 이동할 때마다 바꿀 콘텐츠
       const div_inner = document.createElement("div");
@@ -152,7 +188,8 @@ aside.init().then(() => {
         // history API로 주소값 변경하고 편집기 영역 교체하기
         const state = page;
         history.pushState(state, "", state.id);
-        navigator(state);
+
+        navigateFn(state);
       });
     });
   });
@@ -160,7 +197,9 @@ aside.init().then(() => {
   window.addEventListener("popstate", (event) => {
     if (event.state !== null) {
       // 이전 페이지 기록 있으면
-      navigator(event.state);
+      const state = { event: event.type, ...event.state };
+      navigator(state);
+
     } else {
       // 없으면 같은 페이지에 머무르게
       history.replaceState(event.state, "", location.href);
