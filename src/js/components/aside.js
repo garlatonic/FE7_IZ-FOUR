@@ -1,5 +1,5 @@
 import { getAllDocuments, viewDocument } from "../modules/api.js";
-
+import { updatePage } from "../modules/modify.js";
 const ICON_FILE = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>`;
 const ICON_FILEDATA = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"
 ><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>`;
@@ -83,6 +83,11 @@ aside.init().then(() => {
       p.textContent = `제목: ${state.title} | 내용: ${state.content}`;
       pageArea.replaceChildren(p);
     } else {
+      // const title = document.querySelector(".title h1 input");
+      // title.value = state.title;
+      // const content = document.querySelector(".content textarea");
+      // content.value = state.content;
+
       // 페이지 이동할 때마다 바꿀 콘텐츠
       const div_inner = document.createElement("div");
       div_inner.classList.add("inner", "flex", "flex-col", "gap-4", "w-2/4");
@@ -129,8 +134,11 @@ aside.init().then(() => {
 
       pageArea.replaceChildren(div_inner);
     }
+
+    updatePage(state.id);
   }
 
+  // 왼쪽 페이지 누를 때 동작
   pageItems.forEach((item) => {
     item.addEventListener("click", (event) => {
       event.preventDefault();
@@ -145,7 +153,6 @@ aside.init().then(() => {
         // history API로 주소값 변경하고 편집기 영역 교체하기
         const state = page;
         history.pushState(state, "", state.id);
-        console.log(state);
         navigator(state);
       });
     });
