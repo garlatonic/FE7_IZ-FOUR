@@ -69,7 +69,7 @@ aside.init().then(() => {
   history.replaceState(
     { isHome: true, title: "홈", content: "콘텐츠" },
     "",
-    "home"
+    ""
   );
 
   // 페이지 간 동작
@@ -77,16 +77,15 @@ aside.init().then(() => {
 
   function navigator(state) {
     const pageArea = document.querySelector("#contents");
+    const home = document.querySelector(".home");
     if (state.isHome) {
       // 홈 화면
-      const p = document.createElement("p");
-      p.textContent = `제목: ${state.title} | 내용: ${state.content}`;
-      pageArea.replaceChildren(p);
+      home.classList.remove("hidden");
+      pageArea.classList.add("hidden");
+      console.log("홈");
     } else {
-      // const title = document.querySelector(".title h1 input");
-      // title.value = state.title;
-      // const content = document.querySelector(".content textarea");
-      // content.value = state.content;
+      pageArea.classList.remove("hidden");
+      home.classList.add("hidden");
 
       // 페이지 이동할 때마다 바꿀 콘텐츠
       const div_inner = document.createElement("div");
