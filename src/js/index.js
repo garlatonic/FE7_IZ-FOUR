@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const home = {
-  $rootList: document.querySelector(".home").parentNode,
+  $rootList: document.querySelector(".recent"),
   data: [],
   updatedList: [],
   async init() {
@@ -39,13 +39,13 @@ const home = {
     this.updatedList = this.sortItems(this.updatedList);
     this.$rootList.append(this.showItems(this.updatedList));
   },
-  getItems(documents){
+  getItems(documents) {
     for (const node of documents) {
       const documentInfo = {
         id: node.id,
         title: node.title,
-        updatedAt: node.updatedAt
-      }
+        updatedAt: node.updatedAt,
+      };
       this.updatedList.push(documentInfo);
 
       const children = node.documents || [];
@@ -57,7 +57,7 @@ const home = {
     console.log(this.updatedList);
   },
 
-  sortItems(documents){
+  sortItems(documents) {
     //const result = documents.sort((a,b) => b.updatedAt - a.updatedAt);
     const result = documents.sort(function (a, b) {
       if (b.updatedAt > a.updatedAt) {
@@ -73,30 +73,38 @@ const home = {
     return result;
   },
 
-  showItems(documents){
-    const temp = document.createElement("ul");
-    for(let i=0; i<5; i++){
-      const liEl = document.createElement("li");
+  showItems(documents) {
+    const list = document.createElement("div");
+    list.className = "card-list flex justify-evenly";
 
-      const aEl = document.createElement("a");
-      aEl.href = `/documents/${documents[i].id}`;
+    for (let i = 0; i < 5; i++) {
+      const cardDiv = document.createElement("div");
+      cardDiv.className =
+        "card bg-white flex flex-col rounded-2xl shadow-md mr-5 h-80 w-1/5 overflow-hidden cursor-pointer";
 
-      const titleDiv = document.createElement("div");
-      titleDiv.className = "title";
-      titleDiv.textContent = documents[i].title || "새 페이지";
+      const image = document.createElement("div");
+      image.className = "card-image bg-gray-100 mb-4 h-80";
 
-      const dateDiv = document.createElement("div");
-      dateDiv.className = "date";
-      dateDiv.textContent = documents[i].updatedAt.slice(0, 10);
+      const infoDiv = document.createElement("div");
+      infoDiv.className =
+        "info-container px-4 pb-4 flex flex-col justify-between h-full";
 
-      aEl.append(titleDiv, dateDiv);
-      liEl.append(aEl);
-      
-      temp.append(liEl);
+      const titleH2 = document.createElement("div");
+      titleH2.className = "text-xl font-bold text-gray-800 mb-3";
+      titleH2.textContent = documents[i].title || "새 페이지";
+
+      const dateP = document.createElement("p");
+      dateP.className = "date text-xs text-gray-400";
+      dateP.textContent = documents[i].updatedAt.slice(0, 10);
+
+      infoDiv.append(titleH2, dateP);
+
+      cardDiv.append(image, infoDiv);
+
+      list.append(cardDiv);
     }
-    return temp;
-  }
-  
+    return list;
+  },
 };
 
 home.init();

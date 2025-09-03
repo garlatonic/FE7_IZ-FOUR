@@ -1,87 +1,191 @@
 <!doctype html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1차 프로젝트 7조 노션 클로닝 프로젝트</title>
+    <link rel="stylesheet" href="./src/css/root.css" />
+    <link rel="stylesheet" href="./src/css/components.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="./src/js/components/aside.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1차 프로젝트 7조 노션 클로닝 프로젝트</title>
-  <link rel="stylesheet" href="./src/css/root.css" />
-  <link rel="stylesheet" href="./src/css/components.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <script type="module" src="./src/js/index.js"></script>
-  <script type="module" src="./src/js/components/aside.js"></script>
-</head>
-
-<body>
-  <div id="wrap" class="flex">
-    <aside id="aside" class="aside" aria-label="사이드바">
-      <div class="inner flex flex-col gap-4">
-        <div class="aside-head hoverable flex justify-between items-center ps-2 pe-1 py-1">
-          <div class="team flex items-center gap-2 p-1">
-            <div class="icon size-6">
-              <img src="./assets/icons/logo_notion.svg" alt="노션 로고" class="block rounded" />
-            </div>
-            <div class="title font-bold text-sm">
-              <h2>IZ*FOUR</h2>
-            </div>
-          </div>
-          <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기" class="flex justify-center items-center">
-            <i data-lucide="square-pen"></i>
-          </div>
-        </div>
-        <div class="aside-utils">
-          <a href="../index.html" class="page-item"><i data-lucide="search"></i>검색</a>
-          <a href="../index.html" class="page-item"><i data-lucide="house"></i>홈</a>
-        </div>
-        <nav class="aside-menu">
-          <div class="sidebar">
-            <div class="heading page-item pl-2">
-              <div class="title flex-1">개인 페이지</div>
-              <div class="util">
-                <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
-                  <i data-lucide="plus"></i>
-                </div>
+  <body>
+    <div id="wrap" class="flex">
+      <aside id="aside" class="aside" aria-label="사이드바">
+        <div class="inner flex flex-col gap-4">
+          <div
+            class="aside-head hoverable flex justify-between items-center ps-2 pe-1 py-1"
+          >
+            <div class="team flex items-center gap-2 p-1">
+              <div class="icon size-6">
+                <img
+                  src="./assets/icons/logo_notion.svg"
+                  alt="노션 로고"
+                  class="block rounded"
+                />
+              </div>
+              <div class="title font-bold text-sm">
+                <h2>IZ*FOUR</h2>
               </div>
             </div>
-            <div class="body">
+            <div
+              role="button"
+              aria-label="새 페이지 만들기"
+              data-tooltip="새 페이지 만들기"
+              class="flex justify-center items-center"
+            >
+              <i data-lucide="square-pen"></i>
             </div>
           </div>
-          <div class="hidden" role="separator" aria-label="사이드바 영역을 닫거나, 크기 변경을 할 수 있습니다." data-tooltip="닫기-클릭"
-            data-reference="#separator-tooltip">
-            <div id="separator-tooltip" role="tooltip" class="">
-              <ul>
-                <li><strong>닫기</strong>클릭</li>
-                <li><strong>크기 조정</strong>드래그</li>
-              </ul>
+          <div class="aside-utils">
+            <a href="../index.html" class="page-item"
+              ><i data-lucide="search"></i>검색</a
+            >
+            <a href="../index.html" class="page-item"
+              ><i data-lucide="house"></i>홈</a
+            >
+          </div>
+          <nav class="aside-menu">
+            <div class="sidebar">
+              <div class="heading page-item pl-2">
+                <div class="title flex-1">개인 페이지</div>
+                <div class="util">
+                  <div
+                    role="button"
+                    aria-label="새 페이지 만들기"
+                    data-tooltip="새 페이지 만들기"
+                  >
+                    <i data-lucide="plus"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="body"></div>
+            </div>
+            <div
+              class="hidden"
+              role="separator"
+              aria-label="사이드바 영역을 닫거나, 크기 변경을 할 수 있습니다."
+              data-tooltip="닫기-클릭"
+              data-reference="#separator-tooltip"
+            >
+              <div id="separator-tooltip" role="tooltip" class="">
+                <ul>
+                  <li><strong>닫기</strong>클릭</li>
+                  <li><strong>크기 조정</strong>드래그</li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </aside>
+      <!-- 문서 구역 -->
+      <div id="container" class="flex flex-col flex-1 gap-20">
+        <!-- 문서 상단 타이틀 -->
+        <header id="header" class="header" aria-label="문서 상단">
+          <div class="inner flex justify-between items-center p-4">
+            <div class="breadcrumb">
+              <ol class="flex gap-3">
+                <li><a href="">홈</a></li>
+              </ol>
+            </div>
+            <div class="util">
+              <div role="button" aria-label="즐겨찾기에 추가" class="tooltip">
+                <i data-lucide="star"></i>
+              </div>
             </div>
           </div>
-        </nav>
-      </div>
-    </aside>
-    <!-- 문서 구역 -->
-    <div id="container" class="flex flex-col flex-1 gap-20">
-      <!-- 문서 상단 타이틀 -->
-      <header id="header" class="header" aria-label="문서 상단">
-        <div class="inner flex justify-between items-center p-4">
-          <div class="breadcrumb">
-            <ol class="flex gap-3">
-              <li><a href="">홈</a></li>
-            </ol>
-          </div>
-          <div class="util">
-            <div role="button" aria-label="즐겨찾기에 추가" class="tooltip"><i data-lucide="star"></i></div>
-          </div>
-        </div>
-      </header>
-      <!-- 문서 본문 -->
-      <main id="contents" class="document flex justify-center " aria-label="본문">
-        <div class="inner flex flex-col gap-4 w-2/4">
-          <div class="home">이곳은 홈입니다</div>
-        </div>
-      </main>
-    </div>
-  </div>
-</body>
+        </header>
+        <div class="home flex flex-col justify-around items-center mx-20">
+          <h2 class="text-4xl font-bold mb-20 cursor-default">안녕하세요.</h2>
+          <div class="recent flex flex-col w-full">
+            <div
+              class="recent-title flex items-center cursor-default ml-3 mb-6"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-stopwatch mr-2 text-gray-500"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"
+                />
+                <path
+                  d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"
+                />
+              </svg>
+              <span class="font-semibold text-sm text-gray-500">최근 방문</span>
+            </div>
+            <!-- <div class="card-list flex justify-between w-full">
+              <div
+                class="card bg-white flex flex-col rounded-xl shadow-md mr-5 h-80 overflow-hidden box-border cursor-pointer"
+              >
+                <div class="card-image bg-gray-100 mb-4 h-1/2"></div>
+                <div
+                  class="info-container px-4 pb-4 flex flex-col justify-between h-full"
+                >
+                  <div class="card-content">
+                    <h2 class="text-xl font-bold text-gray-800 mb-3">
+                      페이지 제목
+                    </h2>
+                    <p class="text-xs text-gray-500 truncate">
+                      페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용
+                    </p>
+                  </div>
+                  <p class="date text-xs text-gray-400">2025.09.03</p>
+                </div>
+              </div>
 
+              <div class="card bg-white rounded-xl shadow-md p-3">
+                <div class="card-content">
+                  <h2 class="text-lg font-bold mb-2">페이지 제목</h2>
+                  <p class="text-xs text-gray-600">
+                    페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용
+                  </p>
+                  <p class="text-xs text-gray-400">2025.09.03</p>
+                </div>
+              </div>
+              <div class="card bg-white rounded-xl shadow-md p-3">
+                <div class="card-content">
+                  <h2 class="text-lg font-bold mb-2">페이지 제목</h2>
+                  <p class="text-xs text-gray-600">
+                    페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용
+                  </p>
+                </div>
+              </div>
+              <div class="card bg-white rounded-xl shadow-md p-3">
+                <div class="card-content">
+                  <h2 class="text-lg font-bold mb-2">페이지 제목</h2>
+                  <p class="text-xs text-gray-600">
+                    페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용
+                  </p>
+                </div>
+              </div>
+              <div class="card bg-white rounded-xl shadow-md p-3">
+                <div class="card-content">
+                  <h2 class="text-lg font-bold mb-2">페이지 제목</h2>
+                  <p class="text-xs text-gray-600">
+                    페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용페이지내용
+                  </p>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <!-- 문서 본문 -->
+        <main
+          id="contents"
+          class="document flex justify-center"
+          aria-label="본문"
+        >
+          <div class="inner flex flex-col gap-4 w-2/4"></div>
+        </main>
+      </div>
+    </div>
+  </body>
 </html>
