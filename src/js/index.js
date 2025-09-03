@@ -80,7 +80,6 @@ const home = {
     for (let i = 0; i < 5; i++) {
       const cardDiv = document.createElement("div");
       cardDiv.className =
-
         "card bg-white flex flex-col rounded-2xl shadow-md mr-5 min-w-52 h-80 w-1/5 overflow-hidden cursor-pointer";
 
       const image = document.createElement("div");
@@ -109,7 +108,3 @@ const home = {
 };
 
 home.init();
-
-const home2 = document.querySelector(".home");
-console.log("안녕하세요");
-console.log(home2);
