@@ -75,7 +75,7 @@ aside.init().then(() => {
   // 페이지 간 동작
   const pageItems = document.querySelectorAll("li");
 
-  function navigator(state) {
+  function navigateFn(state) {
     const pageArea = document.querySelector("#contents");
     const home = document.querySelector(".home");
     if (state.isHome) {
@@ -152,7 +152,7 @@ aside.init().then(() => {
         // history API로 주소값 변경하고 편집기 영역 교체하기
         const state = page;
         history.pushState(state, "", state.id);
-        navigator(state);
+        navigateFn(state);
       });
     });
   });
@@ -160,7 +160,7 @@ aside.init().then(() => {
   window.addEventListener("popstate", (event) => {
     if (event.state !== null) {
       // 이전 페이지 기록 있으면
-      navigator(event.state);
+      navigateFn(event.state);
     } else {
       // 없으면 같은 페이지에 머무르게
       history.replaceState(event.state, "", location.href);
