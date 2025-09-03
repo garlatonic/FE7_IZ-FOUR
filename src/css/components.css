@@ -86,6 +86,8 @@
   color: var(--stroke-df);
 }
 
+/* 홈 화면 */
+
 /* =========== container (화면 우측, 문서) =========== */
 /* 브래드크럼 */
 .header .breadcrumb {
