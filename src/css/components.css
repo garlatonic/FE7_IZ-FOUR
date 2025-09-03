@@ -63,6 +63,7 @@
   text-overflow: ellipsis;
 }
 .aside .page-item .util {
+  position: relative;
   opacity: 0;
 }
 .aside .page-item .util [role="button"] {
@@ -73,6 +74,25 @@
   width: var(--icon-sm);
   height: var(--icon-sm);
   stroke: var(--stroke-ic);
+}
+.aside .page-item .util .dialog-menu {
+  position: absolute;
+  top: 100%;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  padding: 4px;
+  background: var(--title-fg);
+  border-radius: 4px;
+  font-size: var(--text-xsm);
+  color: #fff;
+  text-align: center;
+}
+.aside .page-item .util .dialog-menu div {
+  white-space: nowrap;
 }
 .aside .page-item:hover {
   background: var(--hover-bg);
