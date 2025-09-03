@@ -52,12 +52,12 @@ export function navigateFn(state) {
     home.classList.remove("hidden");
     pageArea.classList.add("hidden");
 
-    // addBread("홈");
+    addBread("홈");
   } else {
     pageArea.classList.remove("hidden");
     home.classList.add("hidden");
 
-    // addBread(state.id);
+    addBread(state.id);
 
     // 페이지 이동할 때마다 바꿀 콘텐츠
     const div_inner = document.createElement("div");
