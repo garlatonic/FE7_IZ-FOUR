@@ -148,17 +148,37 @@ async function render(prevPath) {
 
 render();
 
-window.addEventListener("popstate", (event) => {
-  if (event.state !== null) {
+window.addEventListener("popstate", (e) => {
+  if (e.state !== null) {
     // 이전 페이지 기록 있으면
-    navigator(event.state);
+    navigator(e.state);
   } else {
     // 없으면 같은 페이지에 머무르게
-    history.replaceState(event.state, "", location.href);
+    history.replaceState(e.state, "", location.href);
   }
 });
 
 document.addEventListener("click", (e) => {
+  const moreButton = e.target.closest('div[role="button"][data-dialog="more"]');
+  if (moreButton) {
+    e.preventDefault();
+
+    const div = document.createElement("div");
+    const button = document.createElement("div");
+    div.className = "dialog-menu";
+
+    button.className = "function flex gap-1 justify-center";
+    button.setAttribute("role", "button");
+    button.textContent = "삭제";
+    
+
+    div.append(button);
+    moreButton.parentElement.append(div);
+
+    console.log(moreButton);
+    return;
+  }
+
   const a = e.target.closest("a[data-link]");
   if (!a) return;
   e.preventDefault();
