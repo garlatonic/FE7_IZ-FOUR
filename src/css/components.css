@@ -1,9 +1,3 @@
-/* 컨텐츠 */
-#contents .inner {
-  min-width: 1000px;
-  margin: 0 40px;
-}
-
 /* =========== aside (화면 좌측, 사이드바) =========== */
 #aside.aside {
   width: 250px;
@@ -63,7 +57,6 @@
   text-overflow: ellipsis;
 }
 .aside .page-item .util {
-  position: relative;
   opacity: 0;
 }
 .aside .page-item .util [role="button"] {
@@ -74,25 +67,6 @@
   width: var(--icon-sm);
   height: var(--icon-sm);
   stroke: var(--stroke-ic);
-}
-.aside .page-item .util .dialog-menu {
-  position: absolute;
-  top: 100%;
-  right: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  padding: 4px;
-  background: var(--title-fg);
-  border-radius: 4px;
-  font-size: var(--text-xsm);
-  color: #fff;
-  text-align: center;
-}
-.aside .page-item .util .dialog-menu div {
-  white-space: nowrap;
 }
 .aside .page-item:hover {
   background: var(--hover-bg);
@@ -145,30 +119,4 @@
 .document .title input:focus::placeholder,
 .document .content textarea:focus::placeholder {
   color: transparent;
-}
-
-/* 최근 방문 문서 */
-.card-list {
-}
-.card-image {
-  position: relative;
-  background: #f6f3f4;
-}
-.card-image .content {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: var(--text-xsm);
-  text-overflow: ellipsis;
-  filter: blur(1px);
-}
-.info-container {
-  position: relative;
-  background: #fff;
-}
-
-@media screen and (max-width: 1700px) {
 }
