@@ -112,23 +112,19 @@ export function navigateFn(state) {
     const div_content = document.createElement("div");
     div_content.classList.add("content", "flex-1");
 
-    const textarea = document.createElement("textarea");
-    textarea.rows = 1;
-    textarea.placeholder = "내용을 입력하세요.";
-    textarea.setAttribute(
-      "aria-label",
-      "해당 게시물의 내용을 편집하려면 입력하세요."
-    );
-    textarea.classList.add(
-      "min-w-full",
-      "min-h-full",
-      "outline-0",
-      "resize-none"
-    );
-    textarea.value = state.content;
+    const editableDiv = document.createElement("div");
+    editableDiv.setAttribute("contenteditable", "true");
 
-    div_content.appendChild(textarea);
+    const editableDivWrap = document.createElement("div");
+    editableDivWrap.classList.add("contents-wrap", "flex-1");
 
+    if (state.content === null) {
+      editableDivWrap.append(editableDiv);
+    } else {
+      editableDivWrap.innerHTML += state.content;
+    }
+
+    div_content.append(editableDivWrap);
     div_inner.append(div_title, div_content);
 
     pageArea.replaceChildren(div_inner);

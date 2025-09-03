@@ -1,47 +1,10 @@
-import {
-  getAllDocuments,
-  viewDocument,
-  postDocument,
-  editDocument,
-  deleteDocument,
-} from "./modules/api.js";
+import { getAllDocuments } from "../modules/api.js";
 
-import { navigateFn } from "./modules/history.js";
-import home from "./components/recent.js";
-import aside from "./components/aside.js";
+async function rootDouments() {
+  const documents = await getAllDocuments();
+}
 
-lucide.createIcons();
-
-document.addEventListener("DOMContentLoaded", () => {
-  // 최근 문서 목록
-  home.init();
-
-  // 어사이드
-  aside.init().then(() => {
-    /* History API로 SPA 구현 */
-    history.replaceState(
-      //처음 로드 됐을 때 state 추가
-      { isHome: true },
-      "",
-      ""
-    );
-
-    window.addEventListener("popstate", (event) => {
-      if (event.state !== null) {
-        // 이전 페이지 기록 있으면
-        const state = { event: event.type, ...event.state };
-        navigateFn(state);
-      } else {
-        // 없으면 같은 페이지에 머무르게
-        history.replaceState(event.state, "", location.href);
-      }
-    });
-  });
-});
-// textarea.addEventListener("input", function () {
-//   this.style.height = "auto";
-//   this.style.height = this.scrollHeight + "px";
-// });
+rootDouments(); // 문서 불러오기
 
 const home = {
   $rootList: document.querySelector(".recent"),
@@ -95,6 +58,8 @@ const home = {
     list.className = "card-list flex justify-evenly";
 
     for (let i = 0; i < 5; i++) {
+      if(documents[i] === undefined) break;
+
       const cardDiv = document.createElement("div");
       cardDiv.className =
         "card bg-white flex flex-col rounded-2xl shadow-md mr-5 min-w-52 h-80 w-1/5 overflow-hidden cursor-pointer";
@@ -118,31 +83,10 @@ const home = {
 
       cardDiv.append(image, infoDiv);
 
-      cardDiv.addEventListener("click", (e) => {
-        if (documents[i] !== undefined) {
-          viewDocument(documents[i].id).then((response) => {
-            const state = response;
-            history.pushState(state, "", state.id);
-            navigateFn(state);
-          });
-        }
-      });
-
       list.append(cardDiv);
     }
     return list;
   },
 };
 
-home.init();
-
-window.addEventListener("popstate", (event) => {
-  if (event.state !== null) {
-    // 이전 페이지 기록 있으면
-    const state = { event: event.type, ...event.state };
-    navigateFn(state);
-  } else {
-    // 없으면 같은 페이지에 머무르게
-    history.replaceState(event.state, "", location.href);
-  }
-});
+export default home;

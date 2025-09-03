@@ -57,6 +57,8 @@
   text-overflow: ellipsis;
 }
 .aside .page-item .util {
+  overflow: hidden;
+  width: 0;
   opacity: 0;
 }
 .aside .page-item .util [role="button"] {
@@ -72,6 +74,7 @@
   background: var(--hover-bg);
 }
 .aside .page-item:hover .util {
+  width: auto;
   opacity: 1;
 }
 /* 최상단 페이지 목록 */
@@ -121,6 +124,22 @@
   color: transparent;
 }
 
+.document .content .contents-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.document .content .contents-wrap > div {
+  padding: 6px 10px;
+  font-weight: 500;
+}
+.document .content .contents-wrap > div:hover {
+  border-radius: var(--radius-sm);
+  background: var(--hover-bg);
+}
+.document .content .contents-wrap > div:focus {
+  outline: none;
+}
 
 /* =========== modal (모달) =========== */
 #modal {
