@@ -64,7 +64,6 @@ const aside = {
 
 aside.init().then(() => {
   // history API 사용 SPA
-
   //처음 로드 됐을 때 state 추가
   history.replaceState(
     { isHome: true, title: "홈", content: "콘텐츠" },
@@ -94,7 +93,7 @@ aside.init().then(() => {
       // 홈 화면
       home.classList.remove("hidden");
       pageArea.classList.add("hidden");
-      breadcrumb.replaceChildren(createBread("홈"));
+
     } else {
       pageArea.classList.remove("hidden");
       home.classList.add("hidden");
@@ -189,6 +188,7 @@ aside.init().then(() => {
         // history API로 주소값 변경하고 편집기 영역 교체하기
         const state = page;
         history.pushState(state, "", state.id);
+
         navigateFn(state);
       });
     });
@@ -199,6 +199,7 @@ aside.init().then(() => {
       // 이전 페이지 기록 있으면
       const state = { event: event.type, ...event.state };
       navigator(state);
+
     } else {
       // 없으면 같은 페이지에 머무르게
       history.replaceState(event.state, "", location.href);
