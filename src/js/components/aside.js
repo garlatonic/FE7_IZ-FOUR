@@ -1,5 +1,5 @@
-import { getAllDocuments, viewDocument } from "../modules/api.js";
-import { updatePage } from "../modules/modify.js";
+import { getAllDocuments, viewDocument } from "../core/api.js";
+// import { updatePage } from "../modules/modify.js";
 const ICON_FILE = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>`;
 const ICON_FILEDATA = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"
 ><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>`;
@@ -12,19 +12,21 @@ const aside = {
     const data = await getAllDocuments();
     this.data = data ?? [];
     this.render(this.data);
+    this.event();
   },
   render(data) {
     this.$rootList.append(this.buildItems(data));
   },
   buildItems(nodes, depth = 0) {
-    const temp = document.createElement("ul");
+    const ulEl = document.createElement("ul");
 
     for (const node of nodes) {
       const liEl = document.createElement("li");
       liEl.dataset.id = node.id;
 
       const aEl = document.createElement("a");
-      aEl.href = "#none";
+      aEl.href = `/documents/${node.id}`;
+      aEl.dataset.link = `/documents/${node.id}`;
       aEl.className = `page-item pl-${2 + depth * 2}`;
 
       const iconDiv = document.createElement("div");
@@ -51,16 +53,18 @@ const aside = {
       const children = node.documents || [];
 
       if (children.length > 0) {
-        const ulEl = document.createElement("ul");
-        ulEl.append(this.buildItems(children, depth + 1));
-        liEl.appendChild(ulEl);
+        const temp = document.createDocumentFragment();
+        temp.append(this.buildItems(children, depth + 1));
+        liEl.appendChild(temp);
       }
-      temp.append(liEl);
+      ulEl.append(liEl);
     }
 
-    return temp;
+    return ulEl;
   },
+  event() {},
 };
+
 
 aside.init().then(() => {
   // history API 사용 SPA
@@ -250,3 +254,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 });
+
+aside.init();

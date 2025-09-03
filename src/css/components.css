@@ -1,3 +1,9 @@
+/* 컨텐츠 */
+#contents .inner {
+  min-width: 1000px;
+  margin: 0 40px;
+}
+
 /* =========== aside (화면 좌측, 사이드바) =========== */
 #aside.aside {
   width: 250px;
@@ -119,4 +125,30 @@
 .document .title input:focus::placeholder,
 .document .content textarea:focus::placeholder {
   color: transparent;
+}
+
+/* 최근 방문 문서 */
+.card-list {
+}
+.card-image {
+  position: relative;
+  background: #f6f3f4;
+}
+.card-image .content {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: var(--text-xsm);
+  text-overflow: ellipsis;
+  filter: blur(1px);
+}
+.info-container {
+  position: relative;
+  background: #fff;
+}
+
+@media screen and (max-width: 1700px) {
 }
