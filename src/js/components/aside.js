@@ -216,12 +216,3 @@ const aside = {
 };
 
 export default aside;
-
-aside.init().then(() => {
-  history.replaceState(
-    //처음 로드 됐을 때 state 추가
-    { isHome: true },
-    "",
-    ""
-  );
-});
