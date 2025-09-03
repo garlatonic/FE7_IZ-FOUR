@@ -3,10 +3,10 @@ import { editDocument } from "./api.js";
 export function updatePage(id) {
   const pageTitle = document.querySelector(`[data-id="${id}"] .title`);
   const title = document.querySelector(".title h1 input");
-  const content = document.querySelector(".content textarea");
+  const content = document.querySelector(".contents-wrap");
 
   let titleText = title.value;
-  let contentText = content.value;
+  let contentText = content.innerHTML || `<div contenteditable="true"></div>`;
 
   // 페이지 내용 수정될 때 마다 변경된 값 변수에 넣음
   title.addEventListener("input", (event) => {
@@ -15,8 +15,14 @@ export function updatePage(id) {
     pageTitle.textContent = event.target.value;
   });
 
-  content.addEventListener("input", (event) => {
-    contentText = event.target.value;
+  content.addEventListener("input", () => {
+    const divs = content.querySelectorAll("div");
+    if (divs[divs.length - 1].textContent !== "") {
+      const newDiv = document.createElement("div");
+      newDiv.setAttribute("contenteditable", "true");
+      content.append(newDiv);
+    }
+    contentText = content.innerHTML;
   });
 
   // API 호출해서 서버에 저장
@@ -32,7 +38,7 @@ export function updatePage(id) {
     editDocument(id, pageContent);
   });
 
-  content.addEventListener("change", (event) => {
+  content.addEventListener("input", (event) => {
     event.preventDefault();
     event.stopPropagation();
 

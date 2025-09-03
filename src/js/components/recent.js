@@ -58,6 +58,8 @@ const home = {
     list.className = "card-list flex justify-evenly";
 
     for (let i = 0; i < 5; i++) {
+      if(documents[i] === undefined) break;
+
       const cardDiv = document.createElement("div");
       cardDiv.className =
         "card bg-white flex flex-col rounded-2xl shadow-md mr-5 min-w-52 h-80 w-1/5 overflow-hidden cursor-pointer";
@@ -71,11 +73,11 @@ const home = {
 
       const titleH2 = document.createElement("div");
       titleH2.className = "text-xl font-bold text-gray-800 mb-3";
-      titleH2.textContent = documents[i].title || "새 페이지";
+      titleH2.textContent = documents[i]?.title || "새 페이지";
 
       const dateP = document.createElement("p");
       dateP.className = "date text-xs text-gray-400";
-      dateP.textContent = documents[i].updatedAt.slice(0, 10);
+      dateP.textContent = documents[i]?.updatedAt.slice(0, 10);
 
       infoDiv.append(titleH2, dateP);
 
