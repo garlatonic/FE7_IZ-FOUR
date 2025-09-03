@@ -49,7 +49,7 @@ export function navigateFn(state) {
 
     // 페이지 이동할 때마다 바꿀 콘텐츠
     const div_inner = document.createElement("div");
-    div_inner.classList.add("inner", "flex", "flex-col", "gap-4", "w-2/4");
+    div_inner.classList.add("inner", "flex", "flex-col", "gap-4", "w-3/4");
 
     const div_title = document.createElement("div");
     div_title.className = "title";

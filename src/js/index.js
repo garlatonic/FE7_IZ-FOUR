@@ -54,7 +54,6 @@ const home = {
         this.getItems(children);
       }
     }
-    console.log(this.updatedList);
   },
 
   sortItems(documents) {
@@ -69,7 +68,7 @@ const home = {
       // a must be equal to b
       return 0;
     });
-    console.log(result);
+
     return result;
   },
 
