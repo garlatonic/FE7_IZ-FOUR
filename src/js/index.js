@@ -6,6 +6,8 @@ import {
   deleteDocument,
 } from "./modules/api.js";
 
+import { navigateFn } from "./modules/history.js";
+
 lucide.createIcons();
 
 async function rootDouments() {
@@ -90,15 +92,25 @@ const home = {
 
       const titleH2 = document.createElement("div");
       titleH2.className = "text-xl font-bold text-gray-800 mb-3";
-      titleH2.textContent = documents[i].title || "새 페이지";
+      titleH2.textContent = documents[i]?.title || "새 페이지";
 
       const dateP = document.createElement("p");
       dateP.className = "date text-xs text-gray-400";
-      dateP.textContent = documents[i].updatedAt.slice(0, 10);
+      dateP.textContent = documents[i]?.updatedAt.slice(0, 10);
 
       infoDiv.append(titleH2, dateP);
 
       cardDiv.append(image, infoDiv);
+
+      cardDiv.addEventListener("click", (e) => {
+        if (documents[i] !== undefined) {
+          viewDocument(documents[i].id).then((response) => {
+            const state = response;
+            history.pushState(state, "", state.id);
+            navigateFn(state);
+          });
+        }
+      });
 
       list.append(cardDiv);
     }
@@ -107,3 +119,14 @@ const home = {
 };
 
 home.init();
+
+window.addEventListener("popstate", (event) => {
+  if (event.state !== null) {
+    // 이전 페이지 기록 있으면
+    const state = { event: event.type, ...event.state };
+    navigateFn(state);
+  } else {
+    // 없으면 같은 페이지에 머무르게
+    history.replaceState(event.state, "", location.href);
+  }
+});

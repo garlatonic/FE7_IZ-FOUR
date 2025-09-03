@@ -1,10 +1,32 @@
 import { updatePage } from "./modify.js";
+import { viewDocument } from "./api.js";
 
-function createBread(text) {
+function createBread(data) {
   const breadLi = document.createElement("li");
   const breadA = document.createElement("a");
-  breadA.textContent = text;
+  breadA.textContent = data.content;
+  breadA.classList.add("cursor-pointer");
   breadLi.appendChild(breadA);
+
+  if (data.id === "home") {
+    const state = { isHome: true };
+    breadA.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      history.pushState(state, "", "");
+      navigateFn(state);
+    });
+  } else {
+    breadA.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      viewDocument(data.id).then((response) => {
+        const state = response;
+        history.pushState(state, "", state.id);
+        navigateFn(state);
+      });
+    });
+  }
 
   return breadLi;
 }
@@ -12,7 +34,7 @@ function createBread(text) {
 function addBread(id) {
   const breadcrumb = document.querySelector(".breadcrumb ol");
   breadcrumb.innerHTML = "";
-  breadcrumb.appendChild(createBread("홈"));
+  breadcrumb.appendChild(createBread({ id: "home", content: "홈" }));
 
   if (id === "홈") return;
 
@@ -23,21 +45,27 @@ function addBread(id) {
 
   const currentText = current.querySelector(".title").textContent;
 
-  breads.push(currentText);
+  breads.push({ id: id, content: currentText });
 
   while (parent !== null) {
-    // p가 널이면 상위 페이지 없음
-    breads.push(parent.querySelector(".title").textContent);
+    // parent가 널이면 상위 페이지 없음
+    const id = parent.dataset.id;
+    const content = parent.querySelector(".title").textContent;
+    breads.push({ id: id, content: content });
     current = parent;
     parent = current.parentElement.closest("li");
   }
 
   if (breads.length === 0) {
-    breadcrumb.appendChild(createBread(currentText));
+    breadcrumb.appendChild(createBread({ id: id, content: currentText }));
   } else {
     for (let i = 1; i <= breads.length; i++) {
-      breadcrumb.appendChild(createBread(breads[breads.length - i]));
-      console.log(breads[breads.length - i]);
+      breadcrumb.appendChild(
+        createBread({
+          id: breads[breads.length - i].id,
+          content: breads[breads.length - i].content,
+        })
+      );
     }
   }
 }
