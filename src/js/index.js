@@ -1,19 +1,47 @@
 import {
-  getAllDocuments,
-  viewDocument,
-  postDocument,
-  editDocument,
-  deleteDocument,
+ getAllDocuments, viewDocument, postDocument, editDocument, deleteDocument
+
 } from "./modules/document.js";
+
 
 lucide.createIcons();
 
-async function rootDouments() {
+// 현재 페이지 id를 동적으로 관리
+let currentPageId = null;
+
+// 문서 트리 렌더링 함수
+async function renderDocumentTree() {
   const documents = await getAllDocuments();
-  console.log(documents);
+  const treeList = document.querySelector('.aside-menu .list');
+  if (!treeList) return;
+  treeList.innerHTML = "";
+  documents.forEach(doc => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <a href="#none" class="page-item pl-2" data-id="${doc.id}">
+        <div class="icon"><i data-lucide="file"></i></div>
+        <div class="title flex-1">${doc.title}</div>
+        <div class="util">
+          <div role="button" aria-label="새 페이지 만들기" data-tooltip="새 페이지 만들기">
+            <i data-lucide="plus"></i>
+          </div>
+        </div>
+      </a>
+    `;
+    treeList.appendChild(li);
+
+    // 문서 클릭 시 에디터에 내용 표시
+    const pageLink = li.querySelector('.page-item');
+    pageLink.addEventListener('click', async function(e) {
+      e.preventDefault();
+      const docData = await viewDocument(doc.id);
+      window.openEditor && window.openEditor(docData.id, docData.title, docData.content);
+    });
+  });
+  lucide.createIcons(); // 아이콘 다시 렌더링
 }
 
-rootDouments(); // 문서 불러오기
+renderDocumentTree(); // 페이지 로드 시 트리 렌더링
 
 document.addEventListener("DOMContentLoaded", () => {
   // tooltip.init();
