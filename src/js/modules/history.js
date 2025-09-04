@@ -16,7 +16,7 @@ function createBread(data) {
     breadA.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      history.pushState(state, "", "");
+      history.pushState(state, "", "/");
       navigateFn(state);
     });
   } else {
