@@ -1,3 +1,4 @@
+import { navigateFn } from "./modules/history.js";
 import home from "./components/recent.js";
 import aside from "./components/aside.js";
 
@@ -9,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 어사이드
   aside.init().then(() => {
-    /* History API로 SPA 구현 */
     history.replaceState(
       //처음 로드 됐을 때 state 추가
       { isHome: true },

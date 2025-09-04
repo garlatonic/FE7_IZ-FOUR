@@ -1,10 +1,16 @@
-import { getAllDocuments } from "../modules/api.js";
+import { getAllDocuments, viewDocument } from "../modules/api.js";
+import { navigateFn } from "../modules/history.js";
 
 async function rootDouments() {
   const documents = await getAllDocuments();
 }
 
 rootDouments(); // 문서 불러오기
+
+// textarea.addEventListener("input", function () {
+//   this.style.height = "auto";
+//   this.style.height = this.scrollHeight + "px";
+// });
 
 const home = {
   $rootList: document.querySelector(".recent"),
@@ -58,8 +64,6 @@ const home = {
     list.className = "card-list flex justify-evenly";
 
     for (let i = 0; i < 5; i++) {
-      if(documents[i] === undefined) break;
-
       const cardDiv = document.createElement("div");
       cardDiv.className =
         "card bg-white flex flex-col rounded-2xl shadow-md mr-5 min-w-52 h-80 w-1/5 overflow-hidden cursor-pointer";
@@ -82,6 +86,16 @@ const home = {
       infoDiv.append(titleH2, dateP);
 
       cardDiv.append(image, infoDiv);
+
+      cardDiv.addEventListener("click", (e) => {
+        if (documents[i] !== undefined) {
+          viewDocument(documents[i].id).then((response) => {
+            const state = response;
+            history.pushState(state, "", state.id);
+            navigateFn(state);
+          });
+        }
+      });
 
       list.append(cardDiv);
     }
