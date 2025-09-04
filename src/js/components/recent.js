@@ -91,7 +91,7 @@ const home = {
         if (documents[i] !== undefined) {
           viewDocument(documents[i].id).then((response) => {
             const state = response;
-            history.pushState(state, "", state.id);
+            history.pushState(state, "", `/documents/${state.id}`);
             navigateFn(state);
           });
         }

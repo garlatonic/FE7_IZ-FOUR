@@ -3,6 +3,7 @@ import { ICON_FILE, ICON_FILEDATA } from "../components/icon.js";
 
 export function updatePage(id) {
   const pageTitle = document.querySelector(`[data-id="${id}"] .title`);
+  const aTitle = document.querySelector(`.bread a[data-id="${id}"]`);
   const title = document.querySelector(".title h1 input");
   const content = document.querySelector(".contents-wrap");
 
@@ -14,6 +15,7 @@ export function updatePage(id) {
     titleText = event.target.value;
     // 오른쪽 편집기에서 타이틀 수정하면 왼쪽 페이지 목록에 바로 반영되게
     pageTitle.textContent = event.target.value;
+    aTitle.textContent = event.target.value;
   });
 
   content.addEventListener("input", () => {
