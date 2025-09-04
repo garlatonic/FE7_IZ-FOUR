@@ -33,9 +33,7 @@ const aside = {
 
       const iconDiv = document.createElement("div");
       iconDiv.className = "icon";
-      // iconDiv.innerHTML = ICON_FILE;
       this.hasContent(node.id).then((res) => {
-        console.log(res);
         iconDiv.innerHTML = res ? ICON_FILEDATA : ICON_FILE;
       });
 
@@ -117,7 +115,7 @@ const aside = {
           )
             document
               .querySelector(`#contents .content .page-link [data-id='${id}']`)
-              .remove();
+              .parentNode.remove();
           return;
         }
       }

@@ -20,9 +20,10 @@ export function updatePage(id) {
     const divs = content.querySelectorAll("div");
 
     // 내용 있으면 아이콘 바꾸기
-    if (content.innerText.replaceAll(/\s+\n/g, "") !== "") {
+    if (content.innerText.replaceAll(/\s/g, "") !== "") {
       document.querySelector(`.aside .body [data-id="${id}"] .icon`).innerHTML =
         ICON_FILEDATA;
+      console.log(content.innerText.replaceAll(/\s/g, ""));
     } else {
       document.querySelector(`.aside .body [data-id="${id}"] .icon`).innerHTML =
         ICON_FILE;
