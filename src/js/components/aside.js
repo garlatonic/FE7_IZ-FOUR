@@ -74,6 +74,7 @@ const aside = {
   },
   event() {
     const addButtons = this.$aside.querySelectorAll(".btn-add");
+
     addButtons.forEach((button) => {
       const id = null;
       const $target = this.$rootList.childNodes[0];
@@ -132,6 +133,10 @@ const aside = {
 
       return;
     });
+
+    document.querySelector("#btnSidebar").addEventListener("click", () => {
+      document.body.classList.toggle("hide")
+    })
   },
   postEvent(id, $target) {
     // 부모 page-item 찾기

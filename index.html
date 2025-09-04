@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script type="module" src="./src/js/index.js"></script>
-  <script type="module" src="./src/js/components/aside.js"></script>
 </head>
 
 <body>
@@ -26,8 +25,8 @@
               <h2>IZ*FOUR</h2>
             </div>
           </div>
-          <div class="util flex gap-2">
-            <div class="btn-toggle" role="button" aria-label="사이드바 접기"></div>
+          <div class="util flex gap-1">
+            <div id="btnSidebar" class="btn-toggle" role="button" aria-label="사이드바 접기"><i data-lucide="chevrons-left"></i></div>
             <div class="btn-add" role="button" aria-label="새 페이지 만들기" data-action="addPage"
               class="flex justify-center items-center">
               <i data-lucide="square-pen"></i>
