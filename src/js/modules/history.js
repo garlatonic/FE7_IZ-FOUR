@@ -1,4 +1,5 @@
 import { updatePage } from "./modify.js";
+import { ICON_FILE, ICON_FILEDATA } from "../components/icon.js";
 import { viewDocument } from "./api.js";
 
 function createBread(data) {
@@ -116,7 +117,7 @@ export function navigateFn(state) {
     editableDiv.setAttribute("contenteditable", "true");
 
     const editableDivWrap = document.createElement("div");
-    editableDivWrap.classList.add("contents-wrap", "flex-1");
+    editableDivWrap.classList.add("contents-wrap", "flex-1", "mb-10");
 
     if (state.content === null) {
       editableDivWrap.append(editableDiv);
@@ -128,7 +129,53 @@ export function navigateFn(state) {
     div_inner.append(div_title, div_content);
 
     pageArea.replaceChildren(div_inner);
+
+    // 하단에 링크 추가
+    state.documents.forEach((child) => {
+      const divEl = document.createElement("div");
+      divEl.classList.add("page-link");
+      const aEl = document.createElement("a");
+      aEl.href = "#none";
+      aEl.dataset.id = child.id;
+      aEl.classList.add("flex", "items-center", "gap-1");
+
+      const iconDiv = document.createElement("div");
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = child.content;
+      iconDiv.innerHTML =
+        tempDiv.innerText.replaceAll(/\s/g, "") !== ""
+          ? ICON_FILEDATA
+          : ICON_FILE;
+      iconDiv.classList.add("icon");
+
+      const titleDiv = document.createElement("div");
+      titleDiv.classList.add("title");
+      titleDiv.innerText = child.title || "새 페이지";
+
+      aEl.append(iconDiv, titleDiv);
+      divEl.append(aEl);
+
+      document.querySelector("#contents .content").append(divEl);
+    });
   }
 
   updatePage(state.id);
 }
+
+document.querySelector("#contents").addEventListener("click", function (e) {
+  const $target = e.target.closest(".page-link a[data-id]");
+  if (!$target) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  // id에 해당하는 페이지 내용 불러옴
+  const pagePromise = viewDocument($target.dataset.id);
+
+  pagePromise.then((page) => {
+    // history API로 주소값 변경하고 편집기 영역 교체하기
+    const state = page;
+    history.pushState(state, "", $target.dataset.id);
+    navigateFn(state);
+  });
+});
