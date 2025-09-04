@@ -126,7 +126,7 @@ const aside = {
       pagePromise.then((page) => {
         // history API로 주소값 변경하고 편집기 영역 교체하기
         const state = page;
-        history.pushState(state, "", state.id);
+        history.pushState(state, "", `/documents/${state.id}`);
         navigateFn(state);
       });
 
@@ -199,7 +199,7 @@ const aside = {
       pagePromise.then((page) => {
         // history API로 주소값 변경하고 편집기 영역 교체하기
         const state = page;
-        history.pushState(state, "", state.id);
+        history.pushState(state, "", `/documents/${state.id}`);
         navigateFn(state);
       });
     });

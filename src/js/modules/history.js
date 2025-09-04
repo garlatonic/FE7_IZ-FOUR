@@ -6,7 +6,9 @@ function createBread(data) {
   const breadLi = document.createElement("li");
   const breadA = document.createElement("a");
   breadA.textContent = data.content;
+  breadA.dataset.id = data.id;
   breadA.classList.add("cursor-pointer");
+  breadLi.classList.add("bread");
   breadLi.appendChild(breadA);
 
   if (data.id === "home") {
@@ -23,7 +25,7 @@ function createBread(data) {
       e.stopPropagation();
       viewDocument(data.id).then((response) => {
         const state = response;
-        history.pushState(state, "", state.id);
+        history.pushState(state, "", `/documents/${state.id}`);
         navigateFn(state);
       });
     });
@@ -175,7 +177,7 @@ document.querySelector("#contents").addEventListener("click", function (e) {
   pagePromise.then((page) => {
     // history API로 주소값 변경하고 편집기 영역 교체하기
     const state = page;
-    history.pushState(state, "", $target.dataset.id);
+    history.pushState(state, "", `/documents/${$target.dataset.id}`);
     navigateFn(state);
   });
 });
