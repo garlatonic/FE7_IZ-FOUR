@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
 /* =========== Design tokens =========== */
 :root {
   /* background, text color */
@@ -27,18 +29,7 @@
 /* =========== Base =========== */
 body {
   min-height: 100vh;
-  font-family:
-    ui-sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI Variable Display",
-    "Segoe UI",
-    Helvetica,
-    "Apple Color Emoji",
-    Arial,
-    sans-serif,
-    "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: "Pretendard", sans-serif;
 }
 #wrap {
   min-height: inherit;
