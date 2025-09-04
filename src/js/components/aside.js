@@ -110,8 +110,14 @@ const aside = {
           }
 
           // 접속한 루트에서 하위 문서를 삭제했을 때
-          if(document.querySelector(`#contents .content .page-link [data-id='']`))
-
+          if (
+            document.querySelector(
+              `#contents .content .page-link [data-id='${id}']`
+            )
+          )
+            document
+              .querySelector(`#contents .content .page-link [data-id='${id}']`)
+              .remove();
           return;
         }
       }
